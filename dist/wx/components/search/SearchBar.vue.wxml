@@ -1,0 +1,8 @@
+<import src="/components/base/BaseIcon.vue.wxml" /><template name="58a91645">
+  <view class="_div data-v-46e0a429 search-bar">
+    <view class="_div data-v-46e0a429 search-bar-wrapper" bindtap="handleProxy" data-eventid="{{'2'}}" data-comkey="{{$k}}">
+      <view class="_div data-v-46e0a429 search"><template color="#858C96" size="16px" data="{{...$root[$kk+'0'], $root}}" is="2d437797"></template></view> <input class="_input data-v-46e0a429 search-bar-input" placeholder="{{hotSearch || ''}}" placeholder-style="color: #ADB4BE" disabled="{{disabled}}" focus="{{focus}}" confirm-type="search" value="{{searchWord}}" bindinput="handleProxy" bindconfirm="handleProxy" data-eventid="{{'0'}}" data-comkey="{{$k}}" />
+      <view class="_div data-v-46e0a429 clear" wx:if="{{searchWord.length > 0}}" bindtap="handleProxy" data-eventid="{{'1'}}" data-comkey="{{$k}}"><template color="#ccc" size="16px" data="{{...$root[$kk+'1'], $root}}" is="2d437797"></template></view>
+    </view>
+  </view>
+</template>

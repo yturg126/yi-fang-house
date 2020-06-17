@@ -1,29 +1,45 @@
 require("./common/manifest.js")
 require("./common/vendor.js")
-global.webpackJsonpMpvue([4],[
+global.webpackJsonpMpvue([3],[
 /* 0 */,
 /* 1 */,
 /* 2 */,
-/* 3 */,
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mpvue_router_patch__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__style_base_scss__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__style_base_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__style_base_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_error__ = __webpack_require__(10);
 
 
 
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_mpvue_router_patch__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 __WEBPACK_IMPORTED_MODULE_1__App__["a" /* default */].mpType = 'app';
+// Vue异常捕获
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.errorHandler = __WEBPACK_IMPORTED_MODULE_4__utils_error__["a" /* errorHandler */];
+console.log(global.mpvue, global.mpvuePlatform);
+if (global.mpvuePlatform === 'my') {} else {
+  // App全局异常捕获
+  global.mpvue.onError(function (err) {
+    return Object(__WEBPACK_IMPORTED_MODULE_4__utils_error__["b" /* onError */])(err, app);
+  });
+}
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a(__WEBPACK_IMPORTED_MODULE_1__App__["a" /* default */]);
 app.$mount();
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31,9 +47,9 @@ app.$mount();
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(6)
+  __webpack_require__(5)
 }
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(0)
 /* script */
 
 /* template */
@@ -74,12 +90,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
+/* 6 */,
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -115,5 +132,61 @@ if (false) {(function () {
   }
 });
 
+/***/ }),
+/* 8 */,
+/* 9 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = errorHandler;
+/* harmony export (immutable) */ __webpack_exports__["b"] = onError;
+/* unused harmony export setError */
+
+// vue级别异常捕获
+function errorHandler(err, vm, info) {
+  // 打印异常数据
+  if (console && console.log) {
+    console.log('errorHandler', err, info);
+  }
+  // 向子组件分发异常处理事件
+  if (err && err.message) {
+    setError(err.message);
+  } else {
+    setError('程序猿紧急抢修中...');
+  }
+}
+
+// 应用级异常捕获
+function onError(err) {
+  console.log('wx.onError', err);
+  // 向子组件分发异常处理事件
+  if (err) {
+    // 尝试截取错误信息，进行精准展示
+    try {
+      var errMessage = err.split('\n')[1].split(';')[0].trim();
+      if (errMessage && errMessage.length > 0) {
+        setError(errMessage);
+      } else {
+        setError('非常抱歉，程序出现异常');
+      }
+    } catch (e) {
+      setError('非常抱歉，程序出现异常');
+    }
+  } else {
+    setError('程序猿紧急抢修中...');
+  }
+}
+
+// 想Vuex发送错误通知
+function setError(message) {
+  global.mpvue.hideLoading();
+}
+
 /***/ })
-],[4]);
+],[3]);

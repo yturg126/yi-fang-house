@@ -1,7 +1,0 @@
-<template name="7f3c295e">
-  <view class="_div data-v-22342f35">
-    <view class="_p data-v-22342f35 card">
-      {{text}}
-    </view>
-  </view>
-</template>

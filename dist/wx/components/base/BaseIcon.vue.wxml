@@ -1,0 +1,4 @@
+<template name="2d437797">
+  <van-icon name="{{name}}" color="{{color}}" size="{{size}}" wx:if="{{platform === 'wx'}}" class="_van-icon data-v-fc95579a {{customClass}}" style=" {{customStyle}}"></van-icon>
+  <icon type="{{name}}" color="{{color}}" size="{{size}}" wx:elif="{{platform === 'my'}}" class="_icon data-v-fc95579a {{customClass}}" style=" {{customStyle}}"></icon>
+</template>
